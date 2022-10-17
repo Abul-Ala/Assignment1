@@ -5,32 +5,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.crudopration.entity.Student;
-import com.crudopration.ripository.Repository;
+import com.crudopration.repository.StudentRepository;
 
 @Component
-public class Service {
+public class StudentService {
 
 	@Autowired
-	Repository stuRepo;
+	StudentRepository stuRepo;
 
-	public void addStudent(Student student) {
-
+	public void saveStudent(Student student) {
 		stuRepo.save(student);
 	}
+	public Student getStudentById(int id) {
+		Student student = stuRepo.findById(id).orElse(new Student());
+		return student;
 
-	public ArrayList<Student> getStudent() {
+	}
+
+	public ArrayList<Student> getStudents() {
 		ArrayList<Student> list = (ArrayList<Student>) stuRepo.findAll();
 		return list;
 
 	}
-
 	public void updateStudent(Student student) {
 		stuRepo.save(student);
-
-	}
-
-	public void deleteStudent(Student student) {
-		stuRepo.delete(student);
 
 	}
 
@@ -40,10 +38,6 @@ public class Service {
 
 	}
 
-	public Student getStudentById(int id) {
-		Student student = stuRepo.findById(id).orElse(new Student());
-		return student;
 
-	}
 
 }

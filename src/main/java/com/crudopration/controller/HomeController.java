@@ -10,56 +10,44 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.crudopration.entity.Student;
-import com.crudopration.service.Service;
+import com.crudopration.service.StudentService;
 
 @RestController
 public class HomeController {
 
 	@Autowired
-	Service service;
+	StudentService studentService;
 
 	@GetMapping("/")
 	public String index() {
 		return "Application is working";
 	}
 
-	@PostMapping("/add")
-	public String addStudent(@RequestBody Student student) {
-		service.addStudent(student);
-		return "Student is added";
+	@PostMapping("/save")
+	public String saveStudent(@RequestBody Student student) {
+		studentService.saveStudent(student);
+		return "Student is saved";
 
 	}
-
-	@GetMapping("/get")
-	public ArrayList<Student> getStudents() {
-
-		ArrayList<Student> list = service.getStudent();
-		return list;
-	}
-
-	@GetMapping("/getStudentId/{id}")
-	public Student getStudentById(@PathVariable int id) {
-		System.out.println("hello");
-		Student student = service.getStudentById(id);
+	@GetMapping("/getStudent/{id}")
+	public Student getStudent(@PathVariable int id) {
+		Student student = studentService.getStudentById(id);
 		return student;
 	}
+	@GetMapping("/getListOfStudents")
+	public ArrayList<Student> getListOfStudents() {
 
+		ArrayList<Student> list = studentService.getStudents();
+		return list;
+	}
 	@PutMapping("/update")
 	public String updateStudent(@RequestBody Student student) {
-		service.updateStudent(student);
+		studentService.updateStudent(student);
 		return "Student Updated";
 	}
-
-	@DeleteMapping("/delete")
-	public String deleteStudent(@RequestBody Student student) {
-		service.deleteStudent(student);
-		return "Student deleted";
-
-	}
-
-	@DeleteMapping("/deleteStudentById/{id}")
-	public String deleteStudentById(@PathVariable int id) {
-		service.deleteStudentById(id);
+	@DeleteMapping("/deleteStudent/{id}")
+	public String deleteStudent(@PathVariable int id) {
+		studentService.deleteStudentById(id);
 		return "Student deleted successfully";
 	}
 
