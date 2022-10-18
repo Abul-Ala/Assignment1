@@ -78,8 +78,6 @@ public class StudentRepositoryTests {
 
         studentRepository.delete(student);
 
-        //employeeRepository.deleteById(1L);
-
         Student student1 = null;
 
         Optional<Student> optionalStudent = studentRepository.findById(6);
