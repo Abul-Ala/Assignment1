@@ -1,4 +1,4 @@
-package com.crudopration.Repo;
+package com.crudopration.studentServiceTest;
 
 import com.crudopration.entity.Student;
 import com.crudopration.repository.StudentRepository;
