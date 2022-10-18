@@ -47,11 +47,11 @@ public class StudentRepositoryTests {
 
     @Test
     @Order(3)
-    public void getListOfEmployeesTest(){
+    public void getListOfStudentsTest(){
 
-        List<Student> employees = studentRepository.findAll();
+        List<Student> students = studentRepository.findAll();
 
-        Assertions.assertThat(employees.size()).isGreaterThan(0);
+        Assertions.assertThat(students.size()).isGreaterThan(0);
 
     }
 
